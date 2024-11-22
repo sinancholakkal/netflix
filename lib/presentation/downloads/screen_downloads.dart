@@ -39,9 +39,9 @@ class ScreenDownload extends StatelessWidget {
 class Section2 extends StatelessWidget {
   Section2({super.key});
   final List imageList = [
-    "https://media.themoviedb.org/t/p/w440_and_h660_face/3yYX4MBbmWFYCBF2j00FKqzLAQs.jpg",
-    "https://media.themoviedb.org/t/p/w440_and_h660_face/7bAS0ENl7pYogOPVNYOo2o03BuO.jpg",
-    "https://media.themoviedb.org/t/p/w440_and_h660_face/tWtcyehBCO9fksIj30pdtVldntw.jpg"
+    "https://imgs.search.brave.com/8H60opDYRJGCxLvAYvfGnV9ghlHxLgxjJeWX7ahn4AI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2UxLzE5/Lzc0L2UxMTk3NDhh/YTI2NDU4MGIzMjdl/NTc5OGYyMmNhNWI5/LmpwZw",
+    "https://imgs.search.brave.com/gME_3weBpboWS__m2dGMBMFKkybN8T8iMgKRfoKRpxI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/am9ibG8uY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI0LzA3/LzE5OTItcG9zdGVy/LTQwMHg2MDAuanBn",
+    "https://imgs.search.brave.com/JxRCalAZzgoM-vyrUnxgtzVojzuvIPxqY29-81csugM/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNDU4/NDY3MTYzL3Bob3Rv/L3RoZS1maXJzdC1h/dmVuZ2VyLW1vdmll/LXBvc3Rlci5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9NUNt/c1hzcXhMbkhTdVBJ/NDJFWmRabFRJU3U5/aUw2U0pCRkotQVFE/QUdSRT0"
   ];
 
   @override
