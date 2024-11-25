@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:netflix/core/constant/strings.dart';
 
 class MainCardHome extends StatelessWidget {
-  const MainCardHome({
+  String imageUrl;
+   MainCardHome({
     super.key,
+    required this.imageUrl,
   });
 
   @override
@@ -17,7 +20,7 @@ class MainCardHome extends StatelessWidget {
           image: DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(
-              "https://media.themoviedb.org/t/p/w440_and_h660_face/flSncTaSISRqrqoJ18ZBmThR4Ee.jpg",
+              "$imageAppentUrl$imageUrl",
             ),
           ),
         ),

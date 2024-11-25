@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/constant/constant.dart';
+import 'package:netflix/core/constant/strings.dart';
+import 'package:netflix/domain/home/south_indian_dramas/get_function/get_south_indian.dart';
 import 'package:netflix/presentation/home/screen_home.dart';
 import 'package:netflix/presentation/widgets/costum_button.dart';
 
@@ -12,12 +14,18 @@ class BackgroundCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          width: double.infinity,
-          height: 600,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(kImage), fit: BoxFit.cover)),
+        ValueListenableBuilder(
+          valueListenable: southIndianDramaNotifier,
+          builder: (BuildContext context, value, Widget? child) { 
+           return Container(
+            width: double.infinity,
+            height: 600,
+            decoration:  BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage("$imageAppentUrl${value[0].posterPath}"), fit: BoxFit.cover)),
+          );
+           },
+          
         ),
         const Positioned(
           bottom: 0,
