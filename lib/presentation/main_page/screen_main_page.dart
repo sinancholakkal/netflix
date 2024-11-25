@@ -8,7 +8,7 @@ import 'package:netflix/presentation/new_and_hot/screen_new_and_hot.dart';
 import 'package:netflix/presentation/search/screen_search.dart';
 
 class ScreenMainPage extends StatelessWidget {
-   ScreenMainPage({super.key});
+  ScreenMainPage({super.key});
   final pages = [
     ScreenHome(),
     ScreenNewAndHot(),
@@ -21,12 +21,14 @@ class ScreenMainPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
-        child: ValueListenableBuilder(valueListenable: indexChanger, builder: (BuildContext context, int value, Widget? child) { 
-          return pages[value];
-         }, ),
+        child: ValueListenableBuilder(
+          valueListenable: indexChanger,
+          builder: (BuildContext context, int value, Widget? child) {
+            return pages[value];
+          },
+        ),
       ),
       bottomNavigationBar: BottomNavigationWidget(),
     );
-  
   }
 }

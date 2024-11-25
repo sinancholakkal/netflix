@@ -39,6 +39,9 @@ dependencies:
   video_player: ^2.9.2
   bordered_text: ^2.0.0
   json_annotation: ^4.9.0
+  freezed: ^2.5.7
+  http: ^1.2.2
+  youtube_player_flutter: ^9.1.1
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +54,6 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
   build_runner: ^2.4.13
-  freezed: ^2.5.7
   json_serializable: ^6.9.0
 
 # For information on the generic Dart part of this file, see the

@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constant/constant.dart';
+import 'package:netflix/domain/new_and_hot/coming_soon/get_function/upcoming_key/get_function.dart';
+import 'package:netflix/presentation/new_and_hot/widget/coming_soon_widget.dart';
 import 'package:netflix/presentation/new_and_hot/widget/everyone_watching_widget.dart';
 import 'package:netflix/presentation/widgets/costum_button.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
 
-class ScreenNewAndHot extends StatelessWidget {
+class ScreenNewAndHot extends StatefulWidget {
   const ScreenNewAndHot({super.key});
 
   @override
+  State<ScreenNewAndHot> createState() => _ScreenNewAndHotState();
+}
+
+class _ScreenNewAndHotState extends State<ScreenNewAndHot> {
+  @override
   Widget build(BuildContext context) {
+    getUpcomingVideoKey();
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -80,22 +88,45 @@ class ScreenNewAndHot extends StatelessWidget {
   }
 
   Widget _buildComingSoon(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemBuilder: (context, index) => const ComingSoonWidget(),
-      itemCount: 10,
-    );
+    return 
+           ValueListenableBuilder(
+          valueListenable: upcomingVideoKeyNotifier,
+          builder: (BuildContext context, videoKey, Widget? child) { 
+            if(videoKey.isEmpty){
+              return Center(
+                  child: CircularProgressIndicator(),
+                );
+            }
+            return ListView.builder(
+            shrinkWrap: true,
+            itemBuilder: (context, index) => ComingSoonWidget(videos: videoKey,idx:index),
+            itemCount: videoKey.length,
+          );
+           },
+          
+        );
+        
+        
+    
+    
   }
 
   Widget _buildEveryOneWanth(BuildContext context) {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (BuildContext context, index) {
-        return EveryoneWatchWidget();
-      },
-    );
+    return ValueListenableBuilder(
+          valueListenable: upcomingVideoKeyNotifier,
+          builder: (BuildContext context, videoKey, Widget? child) { 
+            if(videoKey.isEmpty){
+              return Center(
+                  child: CircularProgressIndicator(),
+                );
+            }
+            return ListView.builder(
+            shrinkWrap: true,
+            itemBuilder: (context, index) => EveryoneWatchWidget(videos: videoKey,idx:index),
+            itemCount: videoKey.length,
+          );
+           },
+          
+        );
   }
 }
-
-
-

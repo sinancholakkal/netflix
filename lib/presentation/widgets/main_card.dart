@@ -17,7 +17,6 @@ class MainCardHome extends StatelessWidget {
           image: DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(
-              
               "https://media.themoviedb.org/t/p/w440_and_h660_face/flSncTaSISRqrqoJ18ZBmThR4Ee.jpg",
             ),
           ),

@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/constant/constant.dart';
+import 'package:netflix/domain/new_and_hot/coming_soon/model/upcoming_video_key/upcoming_video_key.dart';
 import 'package:netflix/presentation/widgets/costum_button.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class EveryoneWatchWidget extends StatelessWidget {
-  const EveryoneWatchWidget({
+    List<UpcomingVideoKey> videos =[];
+  int idx;
+   EveryoneWatchWidget({
     super.key,
+    required this.idx,
+    required this.videos,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeight,
         Text(
-          "Frieds",
+          videos[idx].name.toString(),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         kHeight,
@@ -29,7 +34,7 @@ class EveryoneWatchWidget extends StatelessWidget {
         SizedBox(
           height: 50,
         ),
-        VideoWidget(),
+        VideoWidget(videos:videos,index: idx,),
         kHeight20,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -60,7 +65,6 @@ class EveryoneWatchWidget extends StatelessWidget {
             kWidth20
           ],
         ),
-        
       ],
     );
   }

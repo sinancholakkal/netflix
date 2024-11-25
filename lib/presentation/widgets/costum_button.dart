@@ -8,22 +8,27 @@ class CostumButtonWidget extends StatelessWidget {
   final double iconSize;
   final double fontSIze;
   final Color textColor;
-  const CostumButtonWidget({
-    super.key,
-    required this.icon,
-    required this.title,
-    this.fontSIze = 16,
-    this.iconSize = 28,
-    this.textColor = kWhiteColor
-    
-  });
+  const CostumButtonWidget(
+      {super.key,
+      required this.icon,
+      required this.title,
+      this.fontSIze = 16,
+      this.iconSize = 28,
+      this.textColor = kWhiteColor});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(icon,color: Colors.white,size: iconSize,),
-        Text(title,style:  TextStyle(fontSize: fontSIze,color: textColor),)
+        Icon(
+          icon,
+          color: Colors.white,
+          size: iconSize,
+        ),
+        Text(
+          title,
+          style: TextStyle(fontSize: fontSIze, color: textColor),
+        )
       ],
     );
   }

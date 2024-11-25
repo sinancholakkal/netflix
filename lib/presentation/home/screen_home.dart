@@ -73,7 +73,7 @@ class ScreenHome extends StatelessWidget {
                 ),
                 scrollNotifer.value == false
                     ? AnimatedContainer(
-                      duration: Duration(seconds: 2),
+                        duration: Duration(seconds: 2),
                         width: double.infinity,
                         height: 90,
                         color: Colors.black.withOpacity(0.3),
@@ -96,7 +96,7 @@ class ScreenHome extends StatelessWidget {
                                 Container(
                                   color: Colors.blue,
                                   width: 30,
-                                  height: 30, 
+                                  height: 30,
                                 ),
                                 kWidth
                               ],
@@ -104,9 +104,18 @@ class ScreenHome extends StatelessWidget {
                             const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text("TV Shows",style: kHomeTitleStyle,),
-                                Text("Movies",style: kHomeTitleStyle,),
-                                Text("Categories",style: kHomeTitleStyle,)
+                                Text(
+                                  "TV Shows",
+                                  style: kHomeTitleStyle,
+                                ),
+                                Text(
+                                  "Movies",
+                                  style: kHomeTitleStyle,
+                                ),
+                                Text(
+                                  "Categories",
+                                  style: kHomeTitleStyle,
+                                )
                               ],
                             )
                           ],

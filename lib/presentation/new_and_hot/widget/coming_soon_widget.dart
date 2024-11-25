@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/constant/constant.dart';
+import 'package:netflix/domain/new_and_hot/coming_soon/model/upcoming_video_key/upcoming_video_key.dart';
 import 'package:netflix/presentation/widgets/costum_button.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class ComingSoonWidget extends StatelessWidget {
-  const ComingSoonWidget({
+  List<UpcomingVideoKey> videos =[];
+  int idx;
+   ComingSoonWidget({
     super.key,
+    required this.videos,
+    required this.idx
   });
 
   @override
@@ -35,62 +40,68 @@ class ComingSoonWidget extends StatelessWidget {
         ),
         SizedBox(
           width: size.width - 50,
-          height: 500,
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              VideoWidget(),
-              kHeight,
-              Row(
-                children: [
-                  Text(
-                    "TAll GIRL",
-                    style: TextStyle(
-                      letterSpacing: -3,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35,
+          //height: 500,
+          child:  Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                VideoWidget(index: idx, videos: videos,),
+                kHeight,
+                Row(
+                  children: [
+                    Flexible(
+                      child: Text(
+                        //overflow: TextOverflow.ellipsis,
+                        //maxLines: 2,
+                        "${videos[idx].name}",
+                        style: TextStyle(
+                          letterSpacing: -2,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
                     ),
-                  ),
-                  Spacer(),
-                  Row(
-                    children: [
-                      CostumButtonWidget(
-                        icon: Icons.notifications_none,
-                        title: "Remind me",
-                        iconSize: 20,
-                        fontSIze: 12,
-                        textColor: Colors.grey,
-                      ),
-                      kWidth,
-                      kWidth,
-                      CostumButtonWidget(
-                        icon: Icons.info_outline,
-                        title: "Info",
-                        iconSize: 20,
-                        fontSIze: 12,
-                        textColor: Colors.grey,
-                      ),
-                      kWidth,
-                      kWidth
-                    ],
-                  )
-                ],
-              ),
-               Text("Coming on friday"),
-              kHeight,
-               Text(
-                "Tall Girl2",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-              kHeight,
-               Text(
-                "Landing the lead in the school musicial is a\ndrea come true for Jodi,until the pressure\nsends her confidence -- and her relationship --\ninto a tailspin",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
+                    Spacer(),
+                    Row(
+                      children: [
+                        CostumButtonWidget(
+                          icon: Icons.notifications_none,
+                          title: "Remind me",
+                          iconSize: 20,
+                          fontSIze: 12,
+                          textColor: Colors.grey,
+                        ),
+                        kWidth,
+                        kWidth,
+                        CostumButtonWidget(
+                          icon: Icons.info_outline,
+                          title: "Info",
+                          iconSize: 20,
+                          fontSIze: 12,
+                          textColor: Colors.grey,
+                        ),
+                        kWidth,
+                        kWidth
+                      ],
+                    )
+                  ],
                 ),
-              ),
-            ],
+                Text("Coming on friday"),
+                kHeight,
+                Text(
+                  "${videos[idx].name}",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                kHeight,
+                Text(
+                  "Landing the lead in the school musicial is a\ndrea come true for Jodi,until the pressure\nsends her confidence -- and her relationship --\ninto a tailspin",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

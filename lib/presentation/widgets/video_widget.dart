@@ -1,21 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/core/constant/strings.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import 'package:netflix/domain/new_and_hot/coming_soon/model/upcoming_video_key/upcoming_video_key.dart';
 
 class VideoWidget extends StatelessWidget {
-  const VideoWidget({
-    super.key,
-  });
-
+  List<UpcomingVideoKey> videos = [];
+  int index;
+  VideoWidget({super.key, required this.videos, required this.index});
+  ValueNotifier<bool> isVolum = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
+    print("$videoBaseUrl${videos[index].key}");
+    print("======================================================");
     return Stack(
       children: [
-        SizedBox(
-          width: double.infinity,
-          height: 200,
-          child: Image.network(
-            "https://media.themoviedb.org/t/p/w710_and_h400_multi_faces/c6nouvFYnmNO50WQDLcKMI3p0jA.jpg",
-            fit: BoxFit.cover,
-          ),
+        ValueListenableBuilder(
+          
+          valueListenable: isVolum,
+          builder: (BuildContext context, value, Widget? child) { 
+            return SizedBox(
+            width: double.infinity,
+            height: 200,
+            child: YoutubePlayer(
+              controller: YoutubePlayerController(
+                initialVideoId: "${videos[index].key}",
+                flags: YoutubePlayerFlags(
+                  autoPlay: false,
+                  mute: value,
+                ),
+              ),
+              showVideoProgressIndicator: true,
+            ),
+          );
+           },
         ),
         Positioned(
           right: 0,
@@ -26,13 +44,21 @@ class VideoWidget extends StatelessWidget {
               radius: 25,
               backgroundColor: Colors.black45,
               child: Center(
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.volume_off,
-                    size: 20,
-                    color: Colors.white,
-                  ),
+                child: ValueListenableBuilder(
+                  valueListenable: isVolum,
+                  builder: (BuildContext context, value, Widget? child) { 
+                    return IconButton(
+                    onPressed: () {
+                      isVolum.value = !value;
+                      isVolum.notifyListeners();
+                    },
+                    icon:  Icon((value==false)? Icons.volume_down :
+                      Icons.volume_off,
+                      size: 20,
+                      color: Colors.white,
+                    ),
+                  );
+                   },
                 ),
               ),
             ),

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class MainTitleWidget extends StatelessWidget {
   final String title;
-   MainTitleWidget({super.key,required this.title});
+  MainTitleWidget({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {

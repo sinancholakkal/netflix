@@ -4,10 +4,7 @@ import 'package:netflix/presentation/widgets/main_title.dart';
 
 class MainTitleCardHome extends StatelessWidget {
   final String title;
-  const MainTitleCardHome({
-    super.key,
-    required this.title
-  });
+  const MainTitleCardHome({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,7 @@ class MainTitleCardHome extends StatelessWidget {
           maxHeight: 200,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: List.generate(10, (index)=>MainCardHome()),
+            children: List.generate(10, (index) => MainCardHome()),
           ),
         )
       ],

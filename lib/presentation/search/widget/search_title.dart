@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class SearchTextTitle extends StatelessWidget {
   final String title;
-   SearchTextTitle({
+  SearchTextTitle({
     super.key,
     required this.title,
   });

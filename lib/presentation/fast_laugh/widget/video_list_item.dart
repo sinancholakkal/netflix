@@ -39,8 +39,8 @@ class VideoListItem extends StatelessWidget {
                 const Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                     Padding(
-                      padding:  EdgeInsets.symmetric(vertical: 10),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: CircleAvatar(
                         backgroundImage: NetworkImage(imageUrl),
                         radius: 26,
@@ -64,23 +64,23 @@ class VideoListItem extends StatelessWidget {
 class VideoActionWidget extends StatelessWidget {
   final IconData icon;
   final String title;
-  const VideoActionWidget({
-    super.key,
-    required this.icon,
-    required this.title
-  });
+  const VideoActionWidget({super.key, required this.icon, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 6),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
       child: Column(
         children: [
-          Icon(icon,size: 30,color: Colors.white,),
-          Text(title,style: const TextStyle(
-            color: kWhiteColor,
-            fontSize: 16
-          ),)
+          Icon(
+            icon,
+            size: 30,
+            color: Colors.white,
+          ),
+          Text(
+            title,
+            style: const TextStyle(color: kWhiteColor, fontSize: 16),
+          )
         ],
       ),
     );

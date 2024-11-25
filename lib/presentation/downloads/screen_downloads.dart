@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constant/constant.dart';
+import 'package:netflix/core/constant/strings.dart';
+import 'package:netflix/domain/download/get_api_function/get_api_function.dart';
 import 'package:netflix/presentation/widgets/app_bar_widget.dart';
 
 class ScreenDownload extends StatelessWidget {
@@ -24,11 +26,13 @@ class ScreenDownload extends StatelessWidget {
       ),
       body: ListView.separated(
         padding: const EdgeInsets.all(8),
-        itemBuilder: (context,index){
+        itemBuilder: (context, index) {
           return sectionWidget[index];
         },
-        separatorBuilder: (context,index){
-          return const SizedBox(height: 25,);
+        separatorBuilder: (context, index) {
+          return const SizedBox(
+            height: 25,
+          );
         },
         itemCount: sectionWidget.length,
       ),
@@ -46,6 +50,7 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //getDownload();
     final Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -68,34 +73,49 @@ class Section2 extends StatelessWidget {
         SizedBox(
           width: size.width,
           height: size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                radius: size.width * 0.4,
-                backgroundColor: Colors.grey.withOpacity(.5),
-              ),
-              DownloadsImageWidget(
-                image: imageList[0],
-                margin: const EdgeInsets.only(left: 150, bottom: 50),
-                angle: 20,
-                size: Size(size.width * 0.4, size.width * 0.58),
-                radius: 10,
-              ),
-              DownloadsImageWidget(
-                image: imageList[1],
-                margin: const EdgeInsets.only(right: 170, bottom: 50),
-                angle: -20,
-                size: Size(size.width * 0.4, size.width * 0.58),
-                radius: 10,
-              ),
-              DownloadsImageWidget(
-                image: imageList[2],
-                margin: const EdgeInsets.only(bottom: 10),
-                size: Size(size.width * 0.45, size.width * 0.65),
-                radius: 20,
-              )
-            ],
+          child: ValueListenableBuilder(
+            valueListenable: downloadNotifier,
+            builder: (BuildContext context, images, Widget? child) {
+              return FutureBuilder(
+                future: getDownload(),
+                builder: (context, snapshot) {
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                    return const Center(child: CircularProgressIndicator());
+                  }else{
+                    return Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: size.width * 0.4,
+                      backgroundColor: Colors.grey.withOpacity(.5),
+                    ),
+                    DownloadsImageWidget(
+                      image: "$imageAppentUrl${images[0].posterPath}",
+                      margin: const EdgeInsets.only(left: 150, bottom: 50),
+                      angle: 20,
+                      size: Size(size.width * 0.4, size.width * 0.58),
+                      radius: 10,
+                    ),
+                    DownloadsImageWidget(
+                      image: "$imageAppentUrl${images[1].posterPath}",
+                      margin: const EdgeInsets.only(right: 170, bottom: 50),
+                      angle: -20,
+                      size: Size(size.width * 0.4, size.width * 0.58),
+                      radius: 10,
+                    ),
+                    DownloadsImageWidget(
+                      image: "$imageAppentUrl${images[2].posterPath}",
+                      margin: const EdgeInsets.only(bottom: 10),
+                      size: Size(size.width * 0.45, size.width * 0.65),
+                      radius: 20,
+                    )
+                  ],
+                );
+                  }
+                },
+                 
+              );
+            },
           ),
         ),
       ],
