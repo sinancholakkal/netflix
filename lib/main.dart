@@ -8,6 +8,7 @@ import 'package:netflix/domain/home/top_tv_show/get_function/get_function.dart';
 import 'package:netflix/domain/new_and_hot/coming_soon/get_function/upcoming_id/upcoming_movie_id_function.dart';
 import 'package:netflix/domain/new_and_hot/coming_soon/get_function/upcoming_key/get_function.dart';
 import 'package:netflix/presentation/main_page/screen_main_page.dart';
+import 'package:netflix/presentation/splash_screen/splash_spcreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
               bodySmall: TextStyle(color: Colors.white)),
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: Colors.black),
-      home: ScreenMainPage(),
+      home: //ScreenMainPage(),
+      SplashSpcreen()
     );
   }
 }

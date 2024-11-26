@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 
 ValueNotifier<List<Downloads>> downloadNotifier = ValueNotifier([]);
 Future<void> getDownload() async {
-  List<Downloads> values = [];
   final response = await http.get(Uri.parse(ApiEndPoints.downloads));
   Map<String, dynamic> bodyResponse = json.decode(response.body);
   final downloadList = (bodyResponse["results"] as List).map((e) {

@@ -1,19 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix/core/colors/colors.dart';
+import 'package:netflix/core/constant/strings.dart';
+import 'package:netflix/domain/download/get_api_function/get_api_function.dart';
+import 'package:netflix/domain/home/south_indian_dramas/get_function/get_south_indian.dart';
 import 'package:netflix/presentation/search/widget/search_idl.dart';
+import 'package:video_player/video_player.dart';
 
 class VideoListItem extends StatelessWidget {
   final int index;
-  VideoListItem({super.key, required this.index});
+ final String videoUrl;
+  VideoListItem({super.key, required this.index,required this.videoUrl});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          color: Colors.accents[index % Colors.accents.length],
-        ),
+        FastLaughVideoPlayer(videoUrl:videoUrl,),
         Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
@@ -36,22 +39,28 @@ class VideoListItem extends StatelessWidget {
                   ),
                 ),
                 //right Side
-                const Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage(imageUrl),
-                        radius: 26,
+                 ValueListenableBuilder(
+                   valueListenable: southIndianDramaNotifier,
+                   builder: (BuildContext context, value, Widget? child) { 
+                    return Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage("$imageAppentUrl${value[index].posterPath}"),
+                          radius: 26,
+                        ),
                       ),
-                    ),
-                    VideoActionWidget(icon: Icons.emoji_emotions, title: "LOL"),
-                    VideoActionWidget(icon: Icons.add, title: "My List"),
-                    VideoActionWidget(icon: Icons.share, title: "Share"),
-                    VideoActionWidget(icon: Icons.play_arrow, title: "Play")
-                  ],
-                )
+                      VideoActionWidget(icon: Icons.emoji_emotions, title: "LOL"),
+                      VideoActionWidget(icon: Icons.add, title: "My List"),
+                      GestureDetector(child: VideoActionWidget(icon: Icons.share, title: "Share"),),
+                      VideoActionWidget(icon: Icons.play_arrow, title: "Play")
+                    ],
+                                   );
+                    },
+                   
+                 )
               ],
             ),
           ),
@@ -84,5 +93,48 @@ class VideoActionWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class FastLaughVideoPlayer extends StatefulWidget {
+  final String videoUrl;
+  FastLaughVideoPlayer({super.key, required this.videoUrl});
+
+  @override
+  State<FastLaughVideoPlayer> createState() => _FastLaughVideoPlayerState();
+}
+
+class _FastLaughVideoPlayerState extends State<FastLaughVideoPlayer> {
+  late VideoPlayerController _videoPlayerController;
+  @override
+  void initState() {
+    _videoPlayerController = VideoPlayerController.network(widget.videoUrl);
+    _videoPlayerController.initialize().then((value) {
+      setState(() {});
+      _videoPlayerController.play();
+    });
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: double.infinity,
+      child: _videoPlayerController.value.isInitialized
+          ? AspectRatio(aspectRatio: _videoPlayerController.value.aspectRatio,child: VideoPlayer(_videoPlayerController),)
+          : const Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+            ),
+    );
+  }
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
 }
